@@ -11,7 +11,6 @@ export const displayUsers = async (
   res: Response,
   next: NextFunction
 ) => {
-  console.log('haha');
   try {
     const { role } = req.query;
     const users = await User.aggregate([

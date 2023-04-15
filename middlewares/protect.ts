@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { Schema } from 'mongoose';
+import { Types } from 'mongoose';
 import User from '../src/models/User';
-const { ObjectId } = Schema.Types;
+const { ObjectId } = Types;
 import { Request, Response, NextFunction } from 'express';
 import { RequestWithInfo } from '../types';
 
@@ -11,17 +11,17 @@ interface IDecodedData {
   id: string;
 }
 
-export const auth = async (
+export default async (
   req: RequestWithInfo,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const publicApis = [
-      '/api/auth/login',
-      '/api/auth/register',
-      '/api/auth/setpass/:id',
-      '/api/auth/forgotpassword',
+      '/auth/login',
+      '/auth/register',
+      '/auth/setpass/:id',
+      '/auth/forgotpassword',
     ];
 
     // * convert url id to :id
@@ -32,6 +32,7 @@ export const auth = async (
       return url;
     });
     const joinNewUrl = newUrl.join('/');
+    console.log('joinNewUrl', joinNewUrl);
     if (publicApis.includes(joinNewUrl)) return next();
 
     const token = req?.headers?.authorization?.replace('Bearer ', '');
