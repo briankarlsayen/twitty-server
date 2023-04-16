@@ -132,7 +132,6 @@ userSchema.methods.comparePassword = async function validatePassword(
 
 userSchema.methods.getSignedJwtToken = async function () {
   if (process.env.JWT_SECRET) {
-    console.log('id', this._id);
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET);
   }
 };

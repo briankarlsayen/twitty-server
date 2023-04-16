@@ -13,7 +13,6 @@ export const createComment = async (
   try {
     if (!isValidObjectId(postId))
       return res.status(400).json({ message: 'Invalid post id' });
-    console.log('userInfo', userInfo);
     const comment = await Comment.create({
       userId: userInfo?._id,
       body,

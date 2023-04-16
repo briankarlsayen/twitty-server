@@ -4,5 +4,7 @@ const router = Router();
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
+router.post('/forgotpassword', authController.forgotPassword);
+router.put('/setpass/:id', authController.setPassword);
 
 export default router;

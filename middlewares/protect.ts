@@ -32,7 +32,6 @@ export default async (
       return url;
     });
     const joinNewUrl = newUrl.join('/');
-    console.log('joinNewUrl', joinNewUrl);
     if (publicApis.includes(joinNewUrl)) return next();
 
     const token = req?.headers?.authorization?.replace('Bearer ', '');
